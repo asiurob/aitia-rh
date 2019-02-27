@@ -45,16 +45,21 @@ loginRouter.post('/', ( req: Request, res: Response )=> {
                 message: 'La contraseña es incorrecta'
             });
         }
-        
-        data.password = null;
-        data.status   = null;
-        const token = jwt.sign({ user: data }, seed, { expiresIn: 21600 });
+        let info: any = {
+            name: `${data.name} ${data.lastname}`,
+            username: data.username,
+            email: data.email,
+            id: data._id
+        };
+
+        const token  = jwt.sign({ user: info }, seed, { expiresIn: 21600 });
+        info.token   = token;
         const update = { $push: { login_data: new Date() } };
         
-        User.findByIdAndUpdate( data._id, update, () => {
+        User.findByIdAndUpdate( info.id, update, () => {
             res.status(200).json({
                 message: 'Identificado correctamente',
-                data, token
+                data: info
             });
         }); 
     });

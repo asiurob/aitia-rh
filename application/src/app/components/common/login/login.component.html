@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3 bg-light p-5 rounded">
+      <form ngNativeValidate [formGroup]="form" (ngSubmit)="login()">
+        <h3 class="text-primary text-center">Sistema</h3>
+        <div class="form-group mt-1">
+          <label>Usuario o correo electrónico</label>
+          <input required formControlName="user" autocomplete="off"
+          autofocus
+          placeholder="Escribe tu username o correo electrónico"
+          type="text" class="form-control form-control-sm">  
+          <small *ngIf="userError" class="text-danger">{{ userError }}</small>
+        </div>
+        
+        <div class="form-group mt-1">
+          <label>Contraseña</label>
+          <input required formControlName="pass" placeholder="Escribe tu contraseña"
+          type="password" class="form-control form-control-sm">  
+          <small *ngIf="passError" class="text-danger">{{ passError }}</small>
+        </div>
+        <button 
+          type="submit"
+          class="btn btn-outline-dark btn-block btn-sm">Ingresar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
