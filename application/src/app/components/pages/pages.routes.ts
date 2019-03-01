@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PagesComponent } from './pages.component';
+import { PagesComponent } from '../../components/pages/pages.component';
+import { LoginGuardGuard } from '../../services/service.index';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
 const routes: Routes = [
-    {
-        path: 'landing/dashboard',
-        component: PagesComponent,
-        children: [
-            { path: 'dashboard', component: DashboardComponent }
-        ]
-    },
-    
+  {
+    path: 'landing',
+    component: PagesComponent,
+    canActivate: [LoginGuardGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+    ]
+  }
 ];
 
 @NgModule({

@@ -1,3 +1,8 @@
-<p>
-  sidebar works!
-</p>
+<div *ngIf="permissions">
+  <div *ngFor="let perm of permissions" class="mt-1">
+      <button *ngIf="perm.actions.split(',').indexOf('r') > -1"
+      [routerLink]="[perm.module_name.route]" routerLinkActive="active" 
+      class="btn btn-block btn-info btn-sm">{{ perm.module_name.name }}</button>
+  </div>
+</div>
+

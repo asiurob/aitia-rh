@@ -4,7 +4,7 @@ import { Response } from 'express';
 
 export const authToken = ( req: any, res: Response, next: Function ) => {
 
-    const token = req.params.token;
+    const token = (req.params.token || req.body.token || req.query.token) || 'X';
     if( token === 'X' ) {
         return res.status( 401 ).json({
             message: 'No fue enviado el token'
@@ -18,7 +18,7 @@ export const authToken = ( req: any, res: Response, next: Function ) => {
                 error
             });
         }
-        req.user = decoded;
+        req.token_data = decoded;
         next();
     });
 }

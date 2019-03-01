@@ -4,14 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import {
-          LoginService, LocalStorageService, LoginGuardGuard
+          LoginService, LocalStorageService, LoginGuardGuard,
+          PermissionsService,
         } from './service.index';
 
 
 @NgModule({
   declarations: [],
   providers: [
-    LoginService, LocalStorageService, LoginGuardGuard
+    LoginService, LocalStorageService, LoginGuardGuard,
+    PermissionsService
   ],
   imports: [
     CommonModule,

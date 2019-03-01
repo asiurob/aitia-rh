@@ -19,7 +19,13 @@ const Schema = new mongo.Schema({
         new_value:  { type: String },
         last_value: { type: String }
     }],
-    login_data: []
+    login_data: [],
+    permissions: [{
+        _id:    false,
+        module_name: { type: mongo.Schema.Types.ObjectId, ref: 'Section'  },
+        crud:        { type: String, min: 1, max: 12 }
+    }],
+    all_permissions: { type: Boolean, default: false }
 }, { collection: 'users' });
 
 Schema.plugin( validator, { message: 'El {PATH} No es válido o es requerido' } );

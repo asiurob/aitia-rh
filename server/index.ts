@@ -12,6 +12,8 @@ import { database, mongoPort } from './global-config';
 import loginRouter from './routes/login.route';
 import userRouter from './routes/user.route';
 import authRouter from './routes/authtoken.route';
+import sectionRouter from './routes/section.route';
+import permissionRouter from './routes/permission.route';
 
 
 const server = Server.instance;
@@ -33,6 +35,8 @@ server.app.use( cors({ origin: true, credentials: true }) );
 server.app.use( '/login', loginRouter );
 server.app.use( '/user', userRouter );
 server.app.use( '/auth', authRouter );
+server.app.use( '/section', sectionRouter );
+server.app.use( '/permission', permissionRouter );
 
 //Iniciar servidor
 server.app.use('/', appRouter );
